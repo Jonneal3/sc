@@ -12,6 +12,28 @@
             height: 400px;
             width: 100%;
         }
+       /* Add your CSS code here */
+        .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-wrapper {
+          background-color: white;
+          border: 1px solid gray;
+          border-radius: 5px;
+          width: 50%; /* adjust the width of the suggestions wrapper */
+          max-height: 200px; /* add a max-height to limit the height of the suggestions list */
+          overflow-y: scroll; /* add scrollbar when the suggestions list overflows */
+        }
+        .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions li {
+          padding: 10px;
+          border-bottom: 1px solid gray;
+          cursor: pointer;
+        }
+    .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions li:hover {
+      background-color: #f5f5f5;
+    }
     </style>
 </head>
 <body>
