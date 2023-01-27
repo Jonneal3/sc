@@ -53,11 +53,33 @@
         zoom: 12
     });
 
-    // Add the geocoder control
     var geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+        placeholder: "Search Location",
+        filter: function(item) {
+            return item.context.map(function(i) {
+                return i.id.split(".")[0];
+            });
+        },
+        localGeocoder: function(query) {
+            // Return the direct result if it contains the location
+            if (query.includes("San Francisco")) {
+                return [
+                    {
+                        name: "San Francisco",
+                        center: [-122.4194, 37.7749],
+                        bbox: [-122.5247, 37.6804, -122.3568, 37.8863],
+                        id: "San Francisco, CA"
+                    }
+                ];
+            }
+            // Otherwise return null to use the Mapbox Geocoding API
+            return [];
+        },
         mapboxgl: mapboxgl
     });
+
 
     // Add a listener for the 'result' event
     geocoder.on('result', function(ev) {
@@ -68,11 +90,6 @@
             .addTo(map);
     });
 
-    //Search button event listener
-    document.getElementById('search').addEventListener('click', function(e) {
-        e.preventDefault();
-        geocoder.query(document.getElementById('address').value);
-    });
 </script>
 </body>
 </html>
