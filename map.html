@@ -53,7 +53,7 @@
         zoom: 12
     });
 
-    var geocoder = new MapboxGeocoder({
+   var geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl,
         placeholder: "Search Location",
@@ -79,6 +79,8 @@
         },
         mapboxgl: mapboxgl
     });
+    map.addControl(geocoder);
+
 
 
     // Add a listener for the 'result' event
