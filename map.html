@@ -1,47 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<meta charset="utf-8"><script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
-	<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
-	<style type="text/css">/* Add some styling for the map container */
-            #map {
-                height: 400px;
-                width: 100%;
-            }
-	</style>
+    <title></title>
+    <meta charset="utf-8">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js'></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
+    <style type="text/css">
+        /* Add some styling for the map container */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 <div id="map"></div>
 
-<form><input id="address" placeholder="Enter an address" type="text" /><button id="search">Search</button></form>
+<form>
+    <input id="address" placeholder="Enter an address" type="text" />
+    <button id="search">Search</button>
+</form>
 <script>
-            // Initialize the map
-            mapboxgl.accessToken = 'pk.eyJ1Ijoiam9ubmVhbDEiLCJhIjoiY2xkOTd3dnM2MDE3MTNwcDBqY2gwMXBqaiJ9.Mc46UP9P-pfV7PygbLRJdw';
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/jonneal1/cld97z9hu000k01mtyadjb703',
-                center: [-98.4916, 29.4252],
-                zoom: 12
-            });
-            // Add the geocoder control
-            var geocoder = new MapboxGeocoder({
-                accessToken: mapboxgl.accessToken,
-                mapboxgl: mapboxgl
-            });
-            map.addControl(geocoder);
-            // Add a listener for the 'result' event
-            geocoder.on('result', function(ev) {
-                var coordinates = ev.result.geometry.coordinates;
-                // Create and add the marker to the map
-                var marker = new mapboxgl.Marker()
-                    .setLngLat(coordinates)
-                    .addTo(map);
-            });
-            //Search button event listener
-            document.getElementById('search').addEventListener('click', function(e) {
-                e.preventDefault();
-                geocoder.query(document.getElementById('address').value);
-            });
-        </script></body>
+    // Initialize the map
+    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9ubmVhbDEiLCJhIjoiY2xkOTd3dnM2MDE3MTNwcDBqY2gwMXBqaiJ9.Mc46UP9P-pfV7PygbLRJdw';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-98.4916, 29.4252],
+        zoom: 12
+    });
+
+    // Add the geocoder control
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+    });
+
+    // Add a listener for the 'result' event
+    geocoder.on('result', function(ev) {
+        var coordinates = ev.result.geometry.coordinates;
+        // Create and add the marker to the map
+        var marker = new mapboxgl.Marker()
+            .setLngLat(coordinates)
+            .addTo(map);
+    });
+
+    //Search button event listener
+    document.getElementById('search').addEventListener('click', function(e) {
+        e.preventDefault();
+        geocoder.query(document.getElementById('address').value);
+    });
+</script>
+</body>
 </html>
