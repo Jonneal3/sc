@@ -94,7 +94,26 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })
     );
+	
+ // make a POST request to the separate API endpoint
+    fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            address: address,
+            coordinates: coordinates
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+	
 </script>
 
+	
+	
+	
 </body>
 </html>
