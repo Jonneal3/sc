@@ -94,7 +94,7 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })    
     );	
-geocoder.on('result', function(e) {
+new MapboxGeocoder.on('result', function(e) {
   fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
     method: 'POST',
     body: JSON.stringify({
