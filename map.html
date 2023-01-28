@@ -15,7 +15,7 @@
 </head>
 <body>
 <form>
-    <input id="address" placeholder="Enter an address" type="text" />
+    <input id="address" placeholder="Enter an address" type="text" oninput="searchAddress()" onpropertychange="searchAddress()" />
     <button id="search" onclick="searchAddress()">Search</button>
 </form>
 <div id="map"></div>
@@ -30,6 +30,15 @@
         zoom: 12
     });
 
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        localGeocoder: forwardGeocoder,
+        placeholder: 'Search for an address',
+        mapboxgl: mapboxgl,
+        marker: false
+    });
+    map.addControl(geocoder);
+    
     function searchAddress() {
         var address = document.getElementById('address').value;
         // Use the mapbox-gl-js geocoder to search for the address
