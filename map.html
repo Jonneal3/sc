@@ -29,7 +29,8 @@ body { margin: 0; padding: 0; }
     });
 
     // add the zoom control to the top right corner of the map
-    map.addControl(new mapboxgl.NavigationControl());
+   map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+
 
     /* Given a query in the form "lng, lat" or "lat, lng"
      * returns the matching geographic coordinate(s)
