@@ -14,41 +14,38 @@
     </style>
 </head>
 <body>
-<div id="map"></div>
-
-<script>
-    // Initialize the map
-    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9ubmVhbDEiLCJhIjoiY2xkOTd3dnM2MDE3MTNwcDBqY2gwMXBqaiJ9.Mc46UP9P-pfV7PygbLRJdw';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/jonneal1/cld97z9hu000k01mtyadjb703',
-        center: [-98.4916, 29.4252],
-        zoom: 12
-    });
-  function searchAddress() {
-    var address = document.getElementById('address').value;
-    // Use the mapbox-gl-js geocoder to search for the address
-    mapboxgl.geocoder.query({query: address}, function (error, result) {
-        if (error) {
-            console.log(error);
-        } else {
-            // Get the first result
-            var firstResult = result.features[0];
-            // Set the map view to the first result
-            map.setCenter(firstResult.center);
-            map.setZoom(12);
-        }
-    });
-    var geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        localGeocoder: forwardGeocoder,
-        placeholder: 'Search for an address',
-        mapboxgl: mapboxgl,
-        marker: false
-    });
-    map.addControl(geocoder);
-}
-
+    <div id="map"></div>
+    <script>
+        // Initialize the map
+        mapboxgl.accessToken = 'pk.eyJ1Ijoiam9ubmVhbDEiLCJhIjoiY2xkOTd3dnM2MDE3MTNwcDBqY2gwMXBqaiJ9.Mc46UP9P-pfV7PygbLRJdw';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/jonneal1/cld97z9hu000k01mtyadjb703',
+            center: [-98.4916, 29.4252],
+            zoom: 12
+        });
+        
+        // Listen for incoming message from the parent page
+        window.onmessage = function(event) {
+            // Check if the message is coming from the correct source
+            if (event.origin !== "https://yourbubblesite.com") {
+                return;
+            }
+            // Get the address from the message
+            var address = event.data;
+            // Use the mapbox-gl-js geocoder to search for the address
+            mapboxgl.geocoder.query({query: address}, function (error, result) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    // Get the first result
+                    var firstResult = result.features[0];
+                    // Set the map view to the first result
+                    map.setCenter(firstResult.center);
+                    map.setZoom(12);
+                }
+            });
+        };
     </script>
 </body>
 </html>
