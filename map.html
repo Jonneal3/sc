@@ -36,13 +36,13 @@ body { margin: 0; padding: 0; }
      * returns the matching geographic coordinate(s)
      * as search results in carmen geojson format,
      * https://github.com/mapbox/carmen/blob/master/carmen-geojson.md */
-    const coordinatesGeocoder = function (query) {
         // Match anything which looks like
         // decimal degrees coordinate pair.
         const matches = query.match(
             /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
         ); 
-	    const geocoder = new MapboxGeocoder({
+	   const geocoder = new MapboxGeocoder({});
+
 	  // ...options
 	});
 	map.addControl(geocoder);
