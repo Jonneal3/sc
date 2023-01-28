@@ -40,14 +40,13 @@
             }
         });
     }
-    var geocoder = new MapboxGeocoder({
+    var geocoder = new MapboxGeocoder.default({
             accessToken: mapboxgl.accessToken,
             localGeocoder: forwardGeocoder,
             placeholder: 'Search for an address',
-            mapboxgl: mapboxgl,
-            marker: false
         });
         map.addControl(geocoder);
+    }
     </script>
 </body>
 </html>
