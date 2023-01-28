@@ -94,30 +94,6 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })
     );
-mapboxgl.on('result', function(ev) {
-    var selectedResult = ev.result.geometry.coordinates;
-    var data = {
-        coordinates: selectedResult
-    };
-  import requests
-
-# Latitude and longitude values
-lat = 37.4219999
-lon = -122.0840575
-
-# API endpoint
-url = "https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates"
-
-# Data to be sent in the POST request
-data = {"latitude": lat, "longitude": lon}
-
-# Making the POST request
-response = requests.post(url, json=data)
-
-# Printing the response
-print(response.text)
-	
-	
 </script>
 
 </body>
