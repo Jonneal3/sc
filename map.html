@@ -41,7 +41,16 @@ body { margin: 0; padding: 0; }
         // decimal degrees coordinate pair.
         const matches = query.match(
             /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
-        );
+        ); 
+	    const geocoder = new MapboxGeocoder({
+	  // ...options
+	});
+	map.addControl(geocoder);
+
+	geocoder.on('input', function(e) {
+	  console.log(e.target.value); // this will output the current value of the search bar
+	});
+	        
         if (!matches) {
             return null;
         }
@@ -94,14 +103,6 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })
     );
-	const geocoder = new MapboxGeocoder({
-	  // ...options
-	});
-	map.addControl(geocoder);
-
-	geocoder.on('input', function(e) {
-	  console.log(e.target.value); // this will output the current value of the search bar
-	});
 	</script>
 
 </body>
