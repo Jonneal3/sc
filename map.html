@@ -94,24 +94,19 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })    
     );	
-new MapboxGeocoder.on('result', function(e) {
-  fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
-    method: 'POST',
-    body: JSON.stringify({
-      latitude: e.result.geometry.coordinates[1],
-      longitude: e.result.geometry.coordinates[0]
-    }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(response => response.json())
-  .then(data => {
-    // do something with the data returned from the API
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+mapboxGeocoder.on('result', function(e) {
+    // Get the coordinates from the result
+    var coordinates = e.result.geometry.coordinates;
+
+    // Make a POST request to the endpoint with the coordinates
+    fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
+        method: 'POST',
+        body: JSON.stringify({ coordinates: coordinates }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
 });
 
 </script>
