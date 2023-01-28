@@ -99,22 +99,23 @@ mapboxgl.on('result', function(ev) {
     var data = {
         coordinates: selectedResult
     };
-    // Make a POST request to your endpoint with the data
-    fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-});
+  import requests
+
+# Latitude and longitude values
+lat = 37.4219999
+lon = -122.0840575
+
+# API endpoint
+url = "https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates"
+
+# Data to be sent in the POST request
+data = {"latitude": lat, "longitude": lon}
+
+# Making the POST request
+response = requests.post(url, json=data)
+
+# Printing the response
+print(response.text)
 	
 	
 </script>
