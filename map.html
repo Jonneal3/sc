@@ -94,7 +94,15 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })
     );
-</script>
+	const geocoder = new MapboxGeocoder({
+	  // ...options
+	});
+	map.addControl(geocoder);
+
+	geocoder.on('input', function(e) {
+	  console.log(e.target.value); // this will output the current value of the search bar
+	});
+	</script>
 
 </body>
 </html>
