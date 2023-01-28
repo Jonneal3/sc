@@ -27,20 +27,7 @@ body { margin: 0; padding: 0; }
         zoom: 8,
         zoomControl: true
     });
-	MapboxGeocoder.on('result', function(e) {
-	    // Get the coordinates from the result
-	    var coordinates = e.result.geometry.coordinates;
 
-	    // Make a POST request to the endpoint with the coordinates
-	    fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
-		method: 'POST',
-		body: JSON.stringify({ coordinates: coordinates }),
-		headers: { 'Content-Type': 'application/json' }
-	    })
-	    .then(response => response.json())
-	    .then(data => console.log(data))
-	    .catch(error => console.error('Error:', error));
-	});
     // add the zoom control to the top right corner of the map
    map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
