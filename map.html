@@ -25,8 +25,6 @@
 
 <script>
     // Initialize the map
-  <script>
-    // Initialize the map
     mapboxgl.accessToken = 'pk.eyJ1Ijoiam9ubmVhbDEiLCJhIjoiY2xkOTd3dnM2MDE3MTNwcDBqY2gwMXBqaiJ9.Mc46UP9P-pfV7PygbLRJdw';
     var map = new mapboxgl.Map({
         container: 'map',
@@ -50,15 +48,6 @@
             }
         });
     }
-        var geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            localGeocoder: forwardGeocoder,
-            placeholder: 'Search for an address',
-            mapboxgl: mapboxgl,
-            marker: false
-        });
-        map.addControl(geocoder);
-        }
     </script>
 </body>
 </html>
