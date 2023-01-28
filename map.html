@@ -4,7 +4,6 @@
     <title></title>
     <meta charset="utf-8">
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
-    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js'></script>
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
     <style type="text/css">
         /* Add some styling for the map container */
@@ -12,71 +11,15 @@
             height: 100%;
             width: 100%;
         }
-       /* Add your CSS code here */
-        .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-wrapper {
-background-color: white !important;
-border: 1px solid gray !important;
-border-radius: 5px !important;
-width: 50% !important; /* adjust the width of the suggestions wrapper /
-max-height: 200px !important; / add a max-height to limit the height of the suggestions list /
-overflow-y: scroll !important; / add scrollbar when the suggestions list overflows */
-}
-
-.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list {
-list-style: none !important;
-padding: 0 !important;
-margin: 0 !important;
-}
-
-.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li {
-padding: 5px !important;
-cursor: pointer !important;
-}
-
-.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li:hover {
-background-color: #f5f5f5 !important;
-}
-
-.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li strong {
-font-weight: 600 !important;
-}
-
-.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li small {
-font-size: 80% !important;
-}
-
-.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li em {
-font-style: italic !important;
-}
-
-.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li:before {
-content: "" !important;
-display: inline-block !important;
-width: 14px !important;
-height: 14px !important;
-margin-right: 10px !important;
-background-image: url("path/to/icon.svg") !important;
-background-repeat: no-repeat !important;
-background-size: contain !important;
-background-position: center !important;
-}
-
-.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li.focused {
-background-color: #e5e5e5 !important;
-}
-
-.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li.focused:before {
-background-color: #333 !important;
-}
     </style>
 </head>
 <body>
-<div id="map"></div>
-
 <form>
     <input id="address" placeholder="Enter an address" type="text" />
     <button id="search" onclick="searchAddress()">Search</button>
 </form>
+<div id="map"></div>
+
 <script>
     // Initialize the map
     mapboxgl.accessToken = 'pk.eyJ1Ijoiam9ubmVhbDEiLCJhIjoiY2xkOTd3dnM2MDE3MTNwcDBqY2gwMXBqaiJ9.Mc46UP9P-pfV7PygbLRJdw';
@@ -87,45 +30,21 @@ background-color: #333 !important;
         zoom: 12
     });
 
-   var geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl,
-        placeholder: "Search Location",
-        filter: function(item) {
-            return item.context.map(function(i) {
-                return i.id.split(".")[0];
-            });
-        },
-        localGeocoder: function(query) {
-            // Return the direct result if it contains the location
-            if (query.includes("San Francisco")) {
-                return [
-                    {
-                        name: "San Francisco",
-                        center: [-122.4194, 37.7749],
-                        bbox: [-122.5247, 37.6804, -122.3568, 37.8863],
-                        id: "San Francisco, CA"
-                    }
-                ];
+    function searchAddress() {
+        var address = document.getElementById('address').value;
+        // Use the mapbox-gl-js geocoder to search for the address
+        mapboxgl.geocoder.query({query: address}, function (error, result) {
+            if (error) {
+                console.log(error);
+            } else {
+                // Get the first result
+                var firstResult = result.features[0];
+                // Set the map view to the first result
+                map.setCenter(firstResult.center);
+                map.setZoom(12);
             }
-            // Otherwise return null to use the Mapbox Geocoding API
-            return [];
-        },
-        mapboxgl: mapboxgl
-    });
-    map.addControl(geocoder);
-
-
-
-    // Add a listener for the 'result' event
-    geocoder.on('result', function(ev) {
-        var coordinates = ev.result.geometry.coordinates;
-        // Create and add the marker to the map
-        var marker = new mapboxgl.Marker()
-            .setLngLat(coordinates)
-            .addTo(map);
-    });
-
+        });
+    }
 </script>
 </body>
 </html>
