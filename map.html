@@ -25,6 +25,8 @@
 
 <script>
     // Initialize the map
+  <script>
+    // Initialize the map
     mapboxgl.accessToken = 'pk.eyJ1Ijoiam9ubmVhbDEiLCJhIjoiY2xkOTd3dnM2MDE3MTNwcDBqY2gwMXBqaiJ9.Mc46UP9P-pfV7PygbLRJdw';
     var map = new mapboxgl.Map({
         container: 'map',
@@ -32,16 +34,7 @@
         center: [-98.4916, 29.4252],
         zoom: 12
     });
-
-    var geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        localGeocoder: forwardGeocoder,
-        placeholder: 'Search for an address',
-        mapboxgl: mapboxgl,
-        marker: false
-    });
-    map.addControl(geocoder);
-    
+    document.getElementById("form").style.display = "none";
     function searchAddress() {
         var address = document.getElementById('address').value;
         // Use the mapbox-gl-js geocoder to search for the address
@@ -57,6 +50,15 @@
             }
         });
     }
-</script>
+        var geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            localGeocoder: forwardGeocoder,
+            placeholder: 'Search for an address',
+            mapboxgl: mapboxgl,
+            marker: false
+        });
+        map.addControl(geocoder);
+        }
+    </script>
 </body>
 </html>
