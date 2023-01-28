@@ -41,10 +41,7 @@
 <body>
 <div id="map"></div>
 
-<form>
-    <input id="address" placeholder="Enter an address" type="text" />
-    <button id="search" onclick="searchAddress()">Search</button>
-</form>
+
 <script>
     // Initialize the map
     mapboxgl.accessToken = 'pk.eyJ1Ijoiam9ubmVhbDEiLCJhIjoiY2xkOTd3dnM2MDE3MTNwcDBqY2gwMXBqaiJ9.Mc46UP9P-pfV7PygbLRJdw';
@@ -54,8 +51,8 @@
         center: [-98.4916, 29.4252],
         zoom: 12
     });
-
-   var geocoder = new MapboxGeocoder({
+    
+  var geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl,
         placeholder: "Search Location",
