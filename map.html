@@ -94,7 +94,7 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })
     );
-geocoder.on('result', function(ev) {
+mapboxgl.on('result', function(ev) {
     var selectedResult = ev.result.geometry.coordinates;
     var data = {
         coordinates: selectedResult
