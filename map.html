@@ -25,28 +25,30 @@
         center: [-98.4916, 29.4252],
         zoom: 12
     });
-    function searchAddress() {
-        var address = document.getElementById('address').value;
-        // Use the mapbox-gl-js geocoder to search for the address
-        mapboxgl.geocoder.query({query: address}, function (error, result) {
-            if (error) {
-                console.log(error);
-            } else {
-                // Get the first result
-                var firstResult = result.features[0];
-                // Set the map view to the first result
-                map.setCenter(firstResult.center);
-                map.setZoom(12);
-            }
-        });
-    }
-    var geocoder = new MapboxGeocoder.default({
-            accessToken: mapboxgl.accessToken,
-            localGeocoder: forwardGeocoder,
-            placeholder: 'Search for an address',
-        });
-        map.addControl(geocoder);
-    }
+  function searchAddress() {
+    var address = document.getElementById('address').value;
+    // Use the mapbox-gl-js geocoder to search for the address
+    mapboxgl.geocoder.query({query: address}, function (error, result) {
+        if (error) {
+            console.log(error);
+        } else {
+            // Get the first result
+            var firstResult = result.features[0];
+            // Set the map view to the first result
+            map.setCenter(firstResult.center);
+            map.setZoom(12);
+        }
+    });
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        localGeocoder: forwardGeocoder,
+        placeholder: 'Search for an address',
+        mapboxgl: mapboxgl,
+        marker: false
+    });
+    map.addControl(geocoder);
+}
+
     </script>
 </body>
 </html>
