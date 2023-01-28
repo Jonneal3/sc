@@ -94,15 +94,6 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })
 	    
-	geocoder.on('result', function(ev) {
-	    fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
-		method: 'POST',
-		body: JSON.stringify(ev.result.geometry)
-	    })
-	    .then(response => {
-		console.log(response)
-	    });
-	    
 </script>
 
 </body>
