@@ -13,33 +13,61 @@
             width: 100%;
         }
        /* Add your CSS code here */
-        #map .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-wrapper {
-    background-color: white; !important;
-    border: 1px solid gray; !important;
-    border-radius: 5px; !important;
-    width: 50% !important; /* adjust the width of the suggestions wrapper */ 
-    max-height: 200px !important; /* add a max-height to limit the height of the suggestions list */ 
-    overflow-y: scroll !important; /* add scrollbar when the suggestions list overflows */
+        .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-wrapper {
+background-color: white !important;
+border: 1px solid gray !important;
+border-radius: 5px !important;
+width: 50% !important; /* adjust the width of the suggestions wrapper /
+max-height: 200px !important; / add a max-height to limit the height of the suggestions list /
+overflow-y: scroll !important; / add scrollbar when the suggestions list overflows */
 }
 
-#map .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions {
-    background-color: white; !important;
-    border: 1px solid gray; !important;
-    border-radius: 5px; !important;
-    padding: 10px;
-    margin: 10px;
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list {
+list-style: none !important;
+padding: 0 !important;
+margin: 0 !important;
 }
 
-#map .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions li {
-    padding: 10px;
-    border-bottom: 1px solid gray;
-    cursor: pointer;
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li {
+padding: 5px !important;
+cursor: pointer !important;
 }
 
-#map .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions li:hover {
-    background-color: #f5f5f5;
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li:hover {
+background-color: #f5f5f5 !important;
 }
 
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li strong {
+font-weight: 600 !important;
+}
+
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li small {
+font-size: 80% !important;
+}
+
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li em {
+font-style: italic !important;
+}
+
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li:before {
+content: "" !important;
+display: inline-block !important;
+width: 14px !important;
+height: 14px !important;
+margin-right: 10px !important;
+background-image: url("path/to/icon.svg") !important;
+background-repeat: no-repeat !important;
+background-size: contain !important;
+background-position: center !important;
+}
+
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li.focused {
+background-color: #e5e5e5 !important;
+}
+
+.mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-list li.focused:before {
+background-color: #333 !important;
+}
     </style>
 </head>
 <body>
