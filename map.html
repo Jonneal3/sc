@@ -92,8 +92,28 @@ body { margin: 0; padding: 0; }
             placeholder: 'Try: -40, 170',
             mapboxgl: mapboxgl,
             reverseGeocode: true
-        })
+        })    
     );	
+geocoder.on('result', function(e) {
+  fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
+    method: 'POST',
+    body: JSON.stringify({
+      latitude: e.result.geometry.coordinates[1],
+      longitude: e.result.geometry.coordinates[0]
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    // do something with the data returned from the API
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+});
+
 </script>
 
 </body>
