@@ -94,9 +94,10 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })    
     );	
-	MapboxGeocoder.on('result', function(e) {
+	geocoder.on('results', function(results) {
 	    // Get the coordinates from the result
-	    var coordinates = e.result.geometry.coordinates;
+	    var coordinates = results.result.geometry.coordinates;
+		  console.log(results);
 
 	    // Make a POST request to the endpoint with the coordinates
 	    fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
