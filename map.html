@@ -94,7 +94,8 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })    
     );	
-mapboxGeocoder.on('result', function(e) {
+
+MapboxGeocoder.on('result', function(e) {
     // Get the coordinates from the result
     var coordinates = e.result.geometry.coordinates;
 
