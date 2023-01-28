@@ -9,33 +9,37 @@
     <style type="text/css">
         /* Add some styling for the map container */
         #map {
-            height: 400px;
+            height: 100%;
             width: 100%;
         }
        /* Add your CSS code here */
-        .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-wrapper {
-          background-color: white; !important;
-          border: 1px solid gray; !important;
-          border-radius: 5px; !important;
-          width: 50% !important; /* adjust the width of the suggestions wrapper */ 
-          max-height: 200px !important; /* add a max-height to limit the height of the suggestions list */ 
-          overflow-y: scroll !important; /* add scrollbar when the suggestions list overflows */
-        }
-        .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions {
-          background-color: white; !important;
-          border: 1px solid gray; !important;
-          border-radius: 5px; !important;
-          padding: 10px;
-          margin: 10px;
-        }
-        .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions li {
-          padding: 10px;
-          border-bottom: 1px solid gray;
-          cursor: pointer;
-        }
-    .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions li:hover {
-      background-color: #f5f5f5;
-    }
+        #map .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions-wrapper {
+    background-color: white; !important;
+    border: 1px solid gray; !important;
+    border-radius: 5px; !important;
+    width: 50% !important; /* adjust the width of the suggestions wrapper */ 
+    max-height: 200px !important; /* add a max-height to limit the height of the suggestions list */ 
+    overflow-y: scroll !important; /* add scrollbar when the suggestions list overflows */
+}
+
+#map .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions {
+    background-color: white; !important;
+    border: 1px solid gray; !important;
+    border-radius: 5px; !important;
+    padding: 10px;
+    margin: 10px;
+}
+
+#map .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions li {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+}
+
+#map .mapboxgl-ctrl-geocoder .mapboxgl-ctrl-geocoder--suggestions li:hover {
+    background-color: #f5f5f5;
+}
+
     </style>
 </head>
 <body>
