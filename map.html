@@ -94,6 +94,29 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })
     );
+geocoder.on('result', function(ev) {
+    var selectedResult = ev.result.geometry.coordinates;
+    var data = {
+        coordinates: selectedResult
+    };
+    // Make a POST request to your endpoint with the data
+    fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+	
+	
 </script>
 
 </body>
