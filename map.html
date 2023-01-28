@@ -18,6 +18,21 @@ body { margin: 0; padding: 0; }
 <div id="map"></div>
 
 <script>
+	map.on('load', function() {
+ fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        address: address,
+        coordinates: coordinates
+    })
+})
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+});
 	mapboxgl.accessToken = 'pk.eyJ1Ijoiam9ubmVhbDEiLCJhIjoiY2xkOTd3dnM2MDE3MTNwcDBqY2gwMXBqaiJ9.Mc46UP9P-pfV7PygbLRJdw';
     const map = new mapboxgl.Map({
         container: 'map',
@@ -94,23 +109,6 @@ body { margin: 0; padding: 0; }
             reverseGeocode: true
         })
     );
-	
-	map.on('load', function() {
- fetch('https://app2.samuraichat.com/api:t4cw4dEX/test_get_coordiates', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        address: address,
-        coordinates: coordinates
-    })
-})
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-});
-
 	
 </script>
 
